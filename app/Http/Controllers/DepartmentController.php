@@ -10,6 +10,6 @@ class DepartmentController extends Controller
     public function index()
     {
         $department = department::all();
-        return view('dashboard.center.index', compact('department'));
+        return view('hr.department.index', compact('department'));
     }
 }
