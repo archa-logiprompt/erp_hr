@@ -237,7 +237,7 @@
                             <use href="../assets/svg/icon-sprite.svg#fill-form"></use>
                         </svg><span>All reports</span></a>
                     <ul class="sidebar-submenu">
-                        <li><a href="{{ route('admin.gstreport.create') }}">Add Employee</a></li>
+                        <li><a href="{{ route('admin.gstreport.create') }}">Add Department</a></li>
                         <li><a href="{{ route('admin.incomeReport.index') }}">Income Report</a></li>
                         <!--<li><a href="{{ route('admin.expenseReport.index') }}">Expense Report</a></li>-->
                         <li><a href="{{ route('admin.expReport.index') }}">Expense Report</a></li>

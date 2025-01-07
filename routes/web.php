@@ -6,6 +6,7 @@ use App\Http\Controllers\Clienetreport;
 use App\Http\Controllers\ClientinvoiceController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProjectController;
@@ -227,4 +228,14 @@ Route::get('/admin/expReport', [ExpReportController::class, 'index'])->name('adm
     Route::delete('/admin/expense/destroy/{id}', [ExpenseController::class, 'destroy'])->name('admin.expense.destroy');
     Route::get('/admin/expense/edit/{id}', [ExpenseController::class, 'edit'])->name('admin.expense.edit');
     Route::post('/admin/expense/update/{id}', [ExpenseController::class, 'update'])->name('admin.expense.update');
+
+
+
+    //Department
+    Route::get('/admin/department', [DepartmentController::class, 'index'])->name('admin.gstreport.index');
+    // Route::get('/admin/gstreport/create', [GstreportController::class, 'create'])->name('admin.gstreport.create');
+    // Route::post('/admin/gstreport/store', [GstreportController::class, 'store'])->name('admin.gstreport.store');
+    // Route::get('/admin/gstreport/destroy/{id}', [GstreportController::class, 'destroy'])->name('admin.gstreport.destroy');
+    // Route::get('/admin/gstreport/edit/{id}', [GstreportController::class, 'edit'])->name('admin.gstreport.edit');
+    // Route::post('/admin/gstreport/update/{id}', [GstreportController::class, 'update'])->name('admin.gstreport.update');
 });
