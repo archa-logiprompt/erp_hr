@@ -6,7 +6,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-6">
-                        <h4>Income head</h4>
+                        <h4>Role head</h4>
                     </div>
                     <div class="col-6">
                         <ol class="breadcrumb">
@@ -15,7 +15,7 @@
                                         <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
                                     </svg></a></li>
                             <li class="breadcrumb-item">Data Tables</li>
-                            <li class="breadcrumb-item active">Income head Table</li>
+                            <li class="breadcrumb-item active">Role head Table</li>
                         </ol>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                               <div class="common-flex justify-content-end mb-5">
 
 
-                                <a class="btn btn-primary btn-sm" type="button"  href="{{route('admin.incomehead.create')}}">Add</a>
+                                <a class="btn btn-primary btn-sm" type="button"  href="{{route('admin.role.create')}}">Add</a>
                               </div>
                               <table class="display" id="basic-1">
                                     <thead>
@@ -44,11 +44,11 @@
                                     </thead>
                                     <tbody>
  
-                                        @foreach ($incomeheadData as $heads)
+                                        @foreach ($roleData as $heads)
                                              
                                         
                                         <tr>
-                                            <td>{{$heads->head}}</td>
+                                            <td>{{$heads->role}}</td>
                                             
                                             <td>
                                                 <ul class="action">

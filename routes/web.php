@@ -28,6 +28,8 @@ use App\Http\Controllers\GstreportController;
 use App\Http\Controllers\IncomedetailsController;
 use App\Http\Controllers\IncomeHeadController;
 use App\Http\Controllers\IncomereportController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Models\IncomeHead;
 use Illuminate\Support\Facades\Route;
@@ -132,7 +134,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     // BalanceController
     Route::get('/admin/balance/create', [BalanceController::class, 'create'])->name('admin.balance.create');
     Route::post('/admin/balance/store', [BalanceController::class, 'store'])->name('admin.balance.store');
-   Route::get('/admin/balance/view/{id}', [BalanceController::class, 'view'])->name('admin.balance.view');
+    Route::get('/admin/balance/view/{id}', [BalanceController::class, 'view'])->name('admin.balance.view');
     Route::any('/admin/balance/report', [BalanceController::class, 'report'])->name('admin.balance.report');
 
 
@@ -208,8 +210,8 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 
     // income reports
     Route::get('/admin/incomeReport', [IncomereportController::class, 'index'])->name('admin.incomeReport.index');
-Route::get('/admin/expenseReport', [ExpensereportController::class, 'index'])->name('admin.expenseReport.index');
-Route::get('/admin/expReport', [ExpReportController::class, 'index'])->name('admin.expReport.index');
+    Route::get('/admin/expenseReport', [ExpensereportController::class, 'index'])->name('admin.expenseReport.index');
+    Route::get('/admin/expReport', [ExpReportController::class, 'index'])->name('admin.expReport.index');
 
 
     // expense head
@@ -232,10 +234,30 @@ Route::get('/admin/expReport', [ExpReportController::class, 'index'])->name('adm
 
 
     //Department
-    Route::get('/admin/department', [DepartmentController::class, 'index'])->name('hr.department.index');
-    // Route::get('/admin/gstreport/create', [GstreportController::class, 'create'])->name('admin.gstreport.create');
-    // Route::post('/admin/gstreport/store', [GstreportController::class, 'store'])->name('admin.gstreport.store');
-    // Route::get('/admin/gstreport/destroy/{id}', [GstreportController::class, 'destroy'])->name('admin.gstreport.destroy');
-    // Route::get('/admin/gstreport/edit/{id}', [GstreportController::class, 'edit'])->name('admin.gstreport.edit');
-    // Route::post('/admin/gstreport/update/{id}', [GstreportController::class, 'update'])->name('admin.gstreport.update');
+    // Route::get('/admin/department', [DepartmentController::class, 'index'])->name('role.department.index');
+
+
+    //Role
+    Route::get('/admin/role', [RoleController::class, 'index'])->name('admin.role.index');
+    Route::get('/admin/role/create', [RoleController::class, 'create'])->name('admin.role.create');
+    Route::post('/admin/role/store', [RoleController::class, 'store'])->name('admin.role.store');
+    Route::delete('/admin/role/destroy/{id}', [RoleController::class, 'destroy'])->name('admin.role.destroy');
+    Route::get('/admin/role/edit/{id}', [RoleController::class, 'edit'])->name('admin.role.edit');
+    Route::post('/admin/role/update/{id}', [RoleController::class, 'update'])->name('admin.role.update');
+
+
+
+    //Permission
+    Route::get('/admin/permission', [PermissionController::class, 'index'])->name('admin.permission.index');
+    Route::get('/admin/permission/create', [PermissionController::class, 'create'])->name('admin.permission.create');
+    Route::post('/admin/permission/store', [PermissionController::class, 'store'])->name('admin.permission.store');
+    Route::delete('/admin/permission/destroy/{id}', [PermissionController::class, 'destroy'])->name('admin.permission.destroy');
+    Route::get('/admin/permission/edit/{id}', [PermissionController::class, 'edit'])->name('admin.permission.edit');
+    Route::post('/admin/permission/update/{id}', [PermissionController::class, 'update'])->name('admin.permission.update');
+    //Permission-group
+    Route::get('/admin/permission/create-group', [PermissionController::class, 'createGroup'])->name('admin.permission.create-group');
+    Route::post('/admin/permission/store-group', [PermissionController::class, 'storeGroup'])->name('admin.permission.store-group');
+    Route::delete('/admin/permission/destroy/{id}', [PermissionController::class, 'destroy'])->name('admin.permission.destroy');
+    Route::get('/admin/permission/edit/{id}', [PermissionController::class, 'edit'])->name('admin.permission.edit');
+    Route::post('/admin/permission/update/{id}', [PermissionController::class, 'update'])->name('admin.permission.update');
 });

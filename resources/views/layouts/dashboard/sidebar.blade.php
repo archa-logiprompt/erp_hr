@@ -183,21 +183,42 @@
                 </li>
 
                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
-                    href="#">
-                    <svg class="stroke-icon">
-                        <use href="../assets/svg/icon-sprite.svg#stroke-form"></use>
-                    </svg>
-                    <svg class="fill-icon">
-                        <use href="../assets/svg/icon-sprite.svg#fill-form"> </use>
-                    </svg><span>Expense </span></a>
-                <ul class="sidebar-submenu">
+                        href="#">
+                        <svg class="stroke-icon">
+                            <use href="../assets/svg/icon-sprite.svg#stroke-form"></use>
+                        </svg>
+                        <svg class="fill-icon">
+                            <use href="../assets/svg/icon-sprite.svg#fill-form"> </use>
+                        </svg><span>Expense </span></a>
+                    <ul class="sidebar-submenu">
 
-                    <li><a href="{{ route('admin.expensehead.index') }}">Head</a></li>
-                    <li><a href="{{ route('admin.expense.index') }}">Details</a></li>
+                        <li><a href="{{ route('admin.expensehead.index') }}">Head</a></li>
+                        <li><a href="{{ route('admin.expense.index') }}">Details</a></li>
 
 
-                </ul>
-            </li>
+                    </ul>
+                </li>
+                <li class="sidebar-main-title">
+                    <div>
+                        <h6>Human Resources
+                    </div>
+                </li>
+                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
+                        href="#">
+                        <svg class="stroke-icon">
+                            <use href="../assets/svg/icon-sprite.svg#stroke-form"></use>
+                        </svg>
+                        <svg class="fill-icon">
+                            <use href="../assets/svg/icon-sprite.svg#fill-form"> </use>
+                        </svg><span>Master Entry </span></a>
+                    <ul class="sidebar-submenu">
+
+                        <li><a href="{{ route('admin.role.index') }}">Roles</a></li>
+                        <li><a href="{{ route('admin.permission.index') }}">Permissions</a></li>
+
+
+                    </ul>
+                </li>
                 <li class="sidebar-main-title">
                     <div>
                         <h6>Reports</h6>
@@ -223,30 +244,6 @@
 
                     </ul>
                 </li>
-                <li class="sidebar-main-title">
-                    <div>
-                        <h6>HR</h6>
-                    </div>
-                </li>
-                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
-                        href="#">
-                        <svg class="stroke-icon">
-                            <use href="../assets/svg/icon-sprite.svg#stroke-ui-kits"></use>
-                        </svg>
-                        <svg class="fill-icon">
-                            <use href="../assets/svg/icon-sprite.svg#fill-form"></use>
-                        </svg><span>All reports</span></a>
-                    <ul class="sidebar-submenu">
-                        <li><a href="{{ route('hr.department.index') }}">Add Department</a></li>
-                        <li><a href="{{ route('admin.incomeReport.index') }}">Income Report</a></li>
-                        <!--<li><a href="{{ route('admin.expenseReport.index') }}">Expense Report</a></li>-->
-                        <li><a href="{{ route('admin.expReport.index') }}">Expense Report</a></li>
 
-                        <li><a href="{{ route('admin.clientReport.index') }}">Client</a></li>
-                        <li><a href="{{ route('admin.balance.create') }}">Student Balance </a></li>
-                        <li><a href="{{ route('admin.balance.report') }}">Monthly Student Balance </a></li>
-
-                    </ul>
-                </li>
     </nav>
 </div>
