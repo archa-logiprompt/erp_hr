@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('departments', function (Blueprint $table) {
+        Schema::create('permission_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('dep_name');
+            $table->string('permission_group');
+            $table->string('short_code');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('permission_groups');
     }
 };

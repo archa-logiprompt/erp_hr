@@ -10,6 +10,7 @@ class AdminController extends Controller
 
     public function login()
     {
+        
         if (Auth::user()) {
             return view('dashboard');
         }
