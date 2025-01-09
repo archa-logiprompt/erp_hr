@@ -7,7 +7,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-6">
-                        <h4>Course List</h4>
+                        <h4>Department List</h4>
                     </div>
                     <div class="col-6">
                         <ol class="breadcrumb">
@@ -39,20 +39,17 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Duration</th>
-                                            <th>Fees</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
  
-                                        @foreach ($coursedetails as $course)
+                                        @foreach ($department as $dep)
                                              
                                         
                                         <tr>
-                                            <td>{{$course->coursename}}</td>
-                                            <td>{{$course->duration}}</td> 
-                                            <td>{{$course->fee}}</td>
+                                            <td>{{$dep->dep_name}}</td>
+                                            
                                             <td>
                                                 <ul class="action">
                                                     <li class="edit"> <a href="{{url('/admin/courses/edit',$course->id)}}"><i

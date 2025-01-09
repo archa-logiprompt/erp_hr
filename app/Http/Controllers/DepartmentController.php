@@ -9,6 +9,7 @@ class DepartmentController extends Controller
 {
     public function index()
     {
+        dd("hi");exit;
         $department = department::all();
         return view('hr.department.index', compact('department'));
     }

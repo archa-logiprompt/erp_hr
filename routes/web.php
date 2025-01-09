@@ -232,7 +232,7 @@ Route::get('/admin/expReport', [ExpReportController::class, 'index'])->name('adm
 
 
     //Department
-    Route::get('/admin/department', [DepartmentController::class, 'index'])->name('hr.department.index');
+    Route::get('/admin/department', [DepartmentController::class, 'index'])->name('admin.department.index');
     // Route::get('/admin/gstreport/create', [GstreportController::class, 'create'])->name('admin.gstreport.create');
     // Route::post('/admin/gstreport/store', [GstreportController::class, 'store'])->name('admin.gstreport.store');
     // Route::get('/admin/gstreport/destroy/{id}', [GstreportController::class, 'destroy'])->name('admin.gstreport.destroy');
