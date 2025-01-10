@@ -49,21 +49,24 @@
                                             <tr>
                                                 <td>{{ $heads->permission_group }}</td>
                                                 <td class="row mx-2">
-                                                    @foreach($heads['permission'] as $permission)
-                                                    <div class="col-2 bg-primary-subtle p-2 rounded m-1"> {{ $permission->permission }}
-                                                        <a href=""><i class="icon-pencil-alt"></i></a>
-                                                        <a href="" class="text-danger"><i class="icon-trash"></i></a>
-                                                    </div>
+                                                    @foreach ($heads['permission'] as $permission)
+                                                        <div class="col-3 bg-primary-subtle p-2 rounded m-1">
+                                                            {{ $permission->permission }}
+                                                            <a href="{{ url('/admin/permission/edit', $permission->id) }}"><i
+                                                                    class="icon-pencil-alt"></i></a>
+                                                            <a href="{{ url('/admin/permission/destroy', $permission->id) }}"
+                                                                class="text-danger"><i class="icon-trash"></i></a>
+                                                        </div>
                                                     @endforeach
 
                                                 </td>
                                                 <td>
                                                     <ul class="action">
                                                         <li class="edit"> <a
-                                                                href="{{ url('/admin/permission/edit', $heads->id) }}"><i
+                                                                href="{{ url('/admin/permission/edit-group', $heads->id) }}"><i
                                                                     class="icon-pencil-alt"></i></a></li>
                                                         <li class="delete"><a
-                                                                href="{{ url('/admin/permission/destroy', $heads->id) }}"
+                                                                href="{{ url('/admin/permission/destroy-group', $heads->id) }}"
                                                                 onClick="return confirm('Are you sure?');"><i
                                                                     class="icon-trash"></i></a>
                                                         </li>
@@ -74,19 +77,7 @@
                                         @endforeach
                                     </tbody>
 
-                                    {{-- <tbody>
-                                        <tr>
-                                            <td> Report</td>
-                                            <td class="row mx-2">
 
-                                                <div class="col-2 bg-primary-subtle p-2 rounded m-1"> Internal Report
-                                                    <a href=""><i class="icon-pencil-alt"></i></a>
-                                                    <a href="" class="text-danger"><i class="icon-trash"></i></a>
-                                                </div>
-                                               
-                                            </td>
-                                        </tr>
-                                    </tbody> --}}
                                 </table>
 
 

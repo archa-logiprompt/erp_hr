@@ -241,7 +241,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/role', [RoleController::class, 'index'])->name('admin.role.index');
     Route::get('/admin/role/create', [RoleController::class, 'create'])->name('admin.role.create');
     Route::post('/admin/role/store', [RoleController::class, 'store'])->name('admin.role.store');
-    Route::delete('/admin/role/destroy/{id}', [RoleController::class, 'destroy'])->name('admin.role.destroy');
+    Route::get('/admin/role/destroy/{id}', [RoleController::class, 'destroy'])->name('admin.role.destroy');
     Route::get('/admin/role/edit/{id}', [RoleController::class, 'edit'])->name('admin.role.edit');
     Route::post('/admin/role/update/{id}', [RoleController::class, 'update'])->name('admin.role.update');
 
@@ -251,13 +251,13 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/permission', [PermissionController::class, 'index'])->name('admin.permission.index');
     Route::get('/admin/permission/create', [PermissionController::class, 'create'])->name('admin.permission.create');
     Route::post('/admin/permission/store', [PermissionController::class, 'store'])->name('admin.permission.store');
-    Route::delete('/admin/permission/destroy/{id}', [PermissionController::class, 'destroy'])->name('admin.permission.destroy');
+    Route::get('/admin/permission/destroy/{id}', [PermissionController::class, 'destroy'])->name('admin.permission.destroy');
     Route::get('/admin/permission/edit/{id}', [PermissionController::class, 'edit'])->name('admin.permission.edit');
     Route::post('/admin/permission/update/{id}', [PermissionController::class, 'update'])->name('admin.permission.update');
     //Permission-group
     Route::get('/admin/permission/create-group', [PermissionController::class, 'createGroup'])->name('admin.permission.create-group');
     Route::post('/admin/permission/store-group', [PermissionController::class, 'storeGroup'])->name('admin.permission.store-group');
-    Route::delete('/admin/permission/destroy/{id}', [PermissionController::class, 'destroy'])->name('admin.permission.destroy');
-    Route::get('/admin/permission/edit/{id}', [PermissionController::class, 'edit'])->name('admin.permission.edit');
-    Route::post('/admin/permission/update/{id}', [PermissionController::class, 'update'])->name('admin.permission.update');
+    Route::get('/admin/permission/destroy-group/{id}', [PermissionController::class, 'destroyGroup'])->name('admin.permission.destroy-group');
+    Route::get('/admin/permission/edit-group/{id}', [PermissionController::class, 'editGroup'])->name('admin.permission.edit-group');
+    Route::post('/admin/permission/update-group/{id}', [PermissionController::class, 'updateGroup'])->name('admin.permission.update-group');
 });

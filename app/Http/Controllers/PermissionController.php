@@ -30,6 +30,7 @@ class PermissionController extends Controller
     {
 
         $validated = $request->validate([
+            'permission_group_id' => 'required',
             'permission' => 'required',
             'short_code' => 'required',
         ]);
@@ -50,7 +51,7 @@ class PermissionController extends Controller
         ]);
 
         $data = $request->except('_token');
-        Permission::create($data);
+        PermissionGroup::create($data);
 
         return redirect('/admin/permission');
     }
@@ -63,22 +64,51 @@ class PermissionController extends Controller
 
         return redirect()->back();
     }
+    public function destroyGroup($id)
+    {
+
+        PermissionGroup::destroy($id);
+
+        return redirect()->back();
+    }
 
     public function edit($id)
     {
-
+        $permissionGroup = PermissionGroup::all();
         $permissionData = Permission::find($id);
-        return view('hr.permission.edit', compact('permissionData'));
+        return view('hr.permission.edit', compact('permissionData','permissionGroup'));
+    }
+    public function editGroup($id)
+    {
+        $permissionData = PermissionGroup::find($id);
+        return view('hr.permission.editgroup', compact('permissionData'));
     }
 
     public function update(Request $request, $id)
     {
+
         $validated = $request->validate([
+            'permission_group_id' => 'required',
             'permission' => 'required',
+            'short_code' => 'required',
         ]);
         $data = $request->except(['id', '_token']);
 
         Permission::find($id)->update($data);
+
+        return redirect('/admin/permission');
+    }
+
+
+    public function updateGroup(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'permission_group' => 'required',
+            'short_code' => 'required',
+        ]);
+        $data = $request->except(['id', '_token']);
+
+        PermissionGroup::find($id)->update($data);
 
         return redirect('/admin/permission');
     }

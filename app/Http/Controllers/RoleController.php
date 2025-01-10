@@ -34,7 +34,6 @@ class RoleController extends Controller
     }
     public function destroy($id)
     {
-
         Role::destroy($id);
 
         return redirect()->back();
