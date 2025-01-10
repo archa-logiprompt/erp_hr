@@ -7,7 +7,7 @@
             <div class="page-title">
                 <div class="row">
                     <div class="col-6">
-                        <h4>Course List</h4>
+                        <h4>Department List</h4>
                     </div>
                     <div class="col-6">
                         <ol class="breadcrumb">
@@ -16,7 +16,7 @@
                                         <use href="../assets/svg/icon-sprite.svg#stroke-home"></use>
                                     </svg></a></li>
                             <li class="breadcrumb-item">Data Tables</li>
-                            <li class="breadcrumb-item active">Course Table</li>
+                            <li class="breadcrumb-item active">Department Table</li>
                         </ol>
                     </div>
                 </div>
@@ -33,41 +33,32 @@
                               <div class="common-flex justify-content-end mb-5">
 
 
-                                <a class="btn btn-primary btn-sm" type="button"  href="{{route('admin.course.create')}}">Add</a>
+                                <a class="btn btn-primary btn-sm" type="button"  href="{{route('admin.department.create')}}">Add</a>
                               </div>
                               <table class="display" id="basic-1">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
-                                            <th>Duration</th>
-                                            <th>Fees</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
  
-                                        @foreach ($coursedetails as $course)
+                                        @foreach ($department as $dep)
                                              
                                         
                                         <tr>
-                                            <td>{{$course->coursename}}</td>
-                                            <td>{{$course->duration}}</td> 
-                                            <td>{{$course->fee}}</td>
+                                            <td>{{$dep->dep_name}}</td>
                                             <td>
                                                 <ul class="action">
-                                                    <li class="edit"> <a href="{{url('/admin/courses/edit',$course->id)}}"><i
+                                                    <li class="edit"> <a href="{{url('/admin/role/edit',$dep->id)}}"><i
                                                                 class="icon-pencil-alt"></i></a></li>
-                                                    {{-- <li class="delete"><a href="{{url('/admin/courses/destroy',$course->id)}}"  onClick="return confirm('Are you sure?');"><i class="icon-trash"></i></a>
-                                                    </li> --}}
-
-                                                    <li class="delete">
-                                                        <a href="#" class="delete-btn" data-id="{{ $course->id }}">
-                                                            <i class="icon-trash"></i>
-                                                        </a>
+                                                    <li class="delete"><a href="{{url('/admin/department/destroy',$dep->id)}}"  onClick="return confirm('Are you sure?');"><i class="icon-trash"></i></a>
                                                     </li>
-                                                    
+
                                                 </ul>
                                             </td>
+                                            
                                         </tr>
                                         @endforeach
                                     </tbody>

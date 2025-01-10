@@ -234,7 +234,10 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 
 
     //Department
-    // Route::get('/admin/department', [DepartmentController::class, 'index'])->name('role.department.index');
+    Route::get('/admin/department', [DepartmentController::class, 'index'])->name('role.department.index');
+    Route::get('/admin/department/create', [DepartmentController::class, 'create'])->name('admin.department.create');
+    Route::post('/admin/department/store', [DepartmentController::class, 'store'])->name('admin.department.store');
+    Route::get('/admin/department/destroy/{id}', [DepartmentController::class, 'destroy'])->name('admin.department.destroy');
 
 
     //Role

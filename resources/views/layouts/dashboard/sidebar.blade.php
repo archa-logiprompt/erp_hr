@@ -215,6 +215,9 @@
 
                         <li><a href="{{ route('admin.role.index') }}">Roles</a></li>
                         <li><a href="{{ route('admin.permission.index') }}">Permissions</a></li>
+                        <li><a href="{{ route('role.department.index') }}">Add Department</a></li>
+
+
 
 
                     </ul>
