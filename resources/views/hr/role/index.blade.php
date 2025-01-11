@@ -52,6 +52,7 @@
                                             
                                             <td>
                                                 <ul class="action">
+                                                    <li class="color-primary"> <a href="{{url('/admin/role/assign-permission',$heads->id)}}"><i class="fa fa-tags"></i></a></li>
                                                     <li class="edit"> <a href="{{url('/admin/role/edit',$heads->id)}}"><i
                                                                 class="icon-pencil-alt"></i></a></li>
                                                     <li class="delete"><a href="{{url('/admin/role/destroy',$heads->id)}}"  onClick="return confirm('Are you sure?');"><i class="icon-trash"></i></a>

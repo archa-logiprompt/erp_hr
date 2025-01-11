@@ -50,7 +50,7 @@
                                                 <td>{{ $heads->permission_group }}</td>
                                                 <td class="row mx-2">
                                                     @foreach ($heads['permission'] as $permission)
-                                                        <div class="col-3 bg-primary-subtle p-2 rounded m-1">
+                                                        <div class="col-3 bg-dark-subtle p-2 rounded m-1">
                                                             {{ $permission->permission }}
                                                             <a href="{{ url('/admin/permission/edit', $permission->id) }}"><i
                                                                     class="icon-pencil-alt"></i></a>

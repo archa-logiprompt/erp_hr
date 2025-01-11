@@ -247,6 +247,8 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/role/destroy/{id}', [RoleController::class, 'destroy'])->name('admin.role.destroy');
     Route::get('/admin/role/edit/{id}', [RoleController::class, 'edit'])->name('admin.role.edit');
     Route::post('/admin/role/update/{id}', [RoleController::class, 'update'])->name('admin.role.update');
+    Route::get('/admin/role/assign-permission/{id}', [RoleController::class, 'rolePermission']);
+    Route::post('/admin/role/assign', [RoleController::class, 'assign']);
 
 
 
@@ -263,4 +265,6 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/permission/destroy-group/{id}', [PermissionController::class, 'destroyGroup'])->name('admin.permission.destroy-group');
     Route::get('/admin/permission/edit-group/{id}', [PermissionController::class, 'editGroup'])->name('admin.permission.edit-group');
     Route::post('/admin/permission/update-group/{id}', [PermissionController::class, 'updateGroup'])->name('admin.permission.update-group');
+    // permission-assigning
+
 });

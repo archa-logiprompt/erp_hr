@@ -200,7 +200,7 @@
                 </li>
                 <li class="sidebar-main-title">
                     <div>
-                        <h6>Human Resources
+                        <h6>Human Resourses
                     </div>
                 </li>
                 <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
@@ -213,15 +213,14 @@
                         </svg><span>Master Entry </span></a>
                     <ul class="sidebar-submenu">
 
-                        <li><a href="{{ route('admin.role.index') }}">Roles</a></li>
-                        <li><a href="{{ route('admin.permission.index') }}">Permissions</a></li>
-                        <li><a href="{{ route('role.department.index') }}">Add Department</a></li>
+                        <li><a href="{{ route('role.department.index') }}">Department</a></li>
 
 
 
 
                     </ul>
                 </li>
+                
                 <li class="sidebar-main-title">
                     <div>
                         <h6>Reports</h6>
@@ -244,6 +243,29 @@
                         <li><a href="{{ route('admin.clientReport.index') }}">Client</a></li>
                         <li><a href="{{ route('admin.balance.create') }}">Student Balance </a></li>
                         <li><a href="{{ route('admin.balance.report') }}">Monthly Student Balance </a></li>
+
+                    </ul>
+                </li>
+                <li class="sidebar-main-title">
+                    <div>
+                        <h6>Settings
+                    </div>
+                </li>
+                <li class="sidebar-list"><i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title"
+                        href="#">
+                        <svg class="stroke-icon">
+                            <use href="../assets/svg/icon-sprite.svg#stroke-form"></use>
+                        </svg>
+                        <svg class="fill-icon">
+                            <use href="../assets/svg/icon-sprite.svg#fill-form"> </use>
+                        </svg><span>Roles and Permissions </span></a>
+                    <ul class="sidebar-submenu">
+
+                        <li><a href="{{ route('admin.role.index') }}">Roles Permissions</a></li>
+                        <li><a href="{{ route('admin.permission.index') }}">Permissions</a></li>
+
+
+
 
                     </ul>
                 </li>

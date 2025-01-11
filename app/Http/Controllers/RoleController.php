@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\PermissionGroup;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -56,5 +57,21 @@ class RoleController extends Controller
         Role::find($id)->update($data);
 
         return redirect('/admin/role');
+    }
+
+    public function rolePermission($id)
+    {
+        $arr=array();
+
+        $roleData = Role::where('id', $id)->first(['id','role']);
+        $permissionData = PermissionGroup::with('permission')->get();
+        
+        
+        // dd($permissionData);
+        return view('hr.role.assignrole',compact('roleData','permissionData'));
+    }
+
+    public function assign(){
+        dd("e");
     }
 }
