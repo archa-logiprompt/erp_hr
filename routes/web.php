@@ -249,6 +249,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/admin/role/update/{id}', [RoleController::class, 'update'])->name('admin.role.update');
     Route::get('/admin/role/assign-permission/{id}', [RoleController::class, 'rolePermission']);
     Route::post('/admin/role/assign', [RoleController::class, 'assign']);
+    Route::post('/admin/role/getAssignedDataByRole', [RoleController::class, 'AssignedDataByRole']);
 
 
 

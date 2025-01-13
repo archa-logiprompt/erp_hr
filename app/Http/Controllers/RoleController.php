@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\PermissionGroup;
 use App\Models\Role;
+use App\Models\RolesAndPermission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class RoleController extends Controller
 {
@@ -61,17 +64,22 @@ class RoleController extends Controller
 
     public function rolePermission($id)
     {
-        $arr=array();
+        $arr = array();
 
-        $roleData = Role::where('id', $id)->first(['id','role']);
+        $roleData = Role::where('id', $id)->first(['id', 'role']);
         $permissionData = PermissionGroup::with('permission')->get();
-        
-        
-        // dd($permissionData);
-        return view('hr.role.assignrole',compact('roleData','permissionData'));
+
+        return view('hr.role.assignrole', compact('roleData', 'permissionData'));
     }
 
-    public function assign(){
-        dd("e");
+    public function assign(Request $request)
+    {
+        $data = $request->except(['id', '_token']);
+        RolesAndPermission::create($data);
+    }
+
+    public function AssignedDataByRole(Request $request) {
+        $data=RolesAndPermission::where('role_id',$request->role_id)->get();
+        echo json_encode($data);
     }
 }

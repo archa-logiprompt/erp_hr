@@ -34,6 +34,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
+        'd21d43db5f6e840ee7b10744ec7fdf66' => __DIR__ . '/../..' . '/app/Helpers/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -629,6 +630,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Models\\PermissionGroup' => __DIR__ . '/../..' . '/app/Models/PermissionGroup.php',
         'App\\Models\\Project' => __DIR__ . '/../..' . '/app/Models/Project.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
+        'App\\Models\\RolesAndPermission' => __DIR__ . '/../..' . '/app/Models/RolesAndPermission.php',
         'App\\Models\\Salutation' => __DIR__ . '/../..' . '/app/Models/Salutation.php',
         'App\\Models\\Student' => __DIR__ . '/../..' . '/app/Models/Student.php',
         'App\\Models\\StudentInstallment' => __DIR__ . '/../..' . '/app/Models/StudentInstallment.php',
