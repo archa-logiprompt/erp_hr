@@ -39,5 +39,22 @@ class DepartmentController extends Controller
 
         return redirect()->back();
     }
+    public function edit($id)
+    {
+        $dep = department::find($id);
+        return view('hr.department.edit', compact( 'dep'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'dep_name' => 'required',
+        ]);
+        $data = $request->except(['id', '_token']);
+
+        department::find($id)->update($data);
+
+        return redirect('/admin/department');
+    }
 
 }

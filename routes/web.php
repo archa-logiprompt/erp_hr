@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientinvoiceController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProjectController;
@@ -238,6 +239,17 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/department/create', [DepartmentController::class, 'create'])->name('admin.department.create');
     Route::post('/admin/department/store', [DepartmentController::class, 'store'])->name('admin.department.store');
     Route::get('/admin/department/destroy/{id}', [DepartmentController::class, 'destroy'])->name('admin.department.destroy');
+    Route::get('/admin/department/edit/{id}', [DepartmentController::class, 'edit'])->name('admin.department.edit');
+    Route::post('/admin/department/update/{id}', [DepartmentController::class, 'update'])->name('admin.department.update');
+
+
+
+
+    //Department
+    Route::get('/admin/designation', [DesignationController::class, 'index'])->name('role.designation.index');
+    Route::get('/admin/designation/create', [DesignationController::class, 'create'])->name('admin.designation.create');
+    Route::post('/admin/designation/store', [DesignationController::class, 'store'])->name('admin.designation.store');
+
 
 
     //Role
