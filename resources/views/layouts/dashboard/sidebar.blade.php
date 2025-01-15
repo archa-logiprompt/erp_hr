@@ -217,6 +217,7 @@
 
                         <li><a href="{{ route('role.designation.index') }}">Designation</a></li>
 
+                        <li><a href="{{ route('role.employee.index') }}">Add Employee</a></li>
 
 
                     </ul>

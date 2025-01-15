@@ -8,6 +8,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\GeneralSettingsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ProjectController;
@@ -253,7 +254,11 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::get('/admin/designation/edit/{id}', [DesignationController::class, 'edit'])->name('admin.designation.edit');
     Route::post('/admin/designation/update/{id}', [DesignationController::class, 'update'])->name('admin.designation.update');
 
+    //employee
+    Route::get('/admin/employee', [EmployeeController::class, 'index'])->name('role.employee.index');
+    Route::get('/admin/employee/create', [EmployeeController::class, 'create'])->name('admin.employee.create');
 
+    
     //Role
     Route::get('/admin/role', [RoleController::class, 'index'])->name('admin.role.index');
     Route::get('/admin/role/create', [RoleController::class, 'create'])->name('admin.role.create');
