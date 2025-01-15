@@ -245,11 +245,13 @@ Route::middleware([AdminMiddleware::class])->group(function () {
 
 
 
-    //Department
+    //designation
     Route::get('/admin/designation', [DesignationController::class, 'index'])->name('role.designation.index');
     Route::get('/admin/designation/create', [DesignationController::class, 'create'])->name('admin.designation.create');
     Route::post('/admin/designation/store', [DesignationController::class, 'store'])->name('admin.designation.store');
-
+    Route::get('/admin/designation/destroy/{id}', [DesignationController::class, 'destroy'])->name('admin.designation.destroy');
+    Route::get('/admin/designation/edit/{id}', [DesignationController::class, 'edit'])->name('admin.designation.edit');
+    Route::post('/admin/designation/update/{id}', [DesignationController::class, 'update'])->name('admin.designation.update');
 
 
     //Role

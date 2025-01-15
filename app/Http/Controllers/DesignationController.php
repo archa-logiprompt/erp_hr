@@ -30,4 +30,28 @@ class DesignationController extends Controller
     // return redirect()->back();
     return redirect('/admin/designation');
    }
+   public function destroy($id)
+   {
+
+       Designation::destroy($id);
+
+       return redirect()->back();
+   }
+   public function edit($id)
+   {
+       $des= Designation::find($id);
+       return view('hr.designation.edit', compact( 'des'));
+   }
+   public function update(Request $request, $id)
+   {
+       $validated = $request->validate([
+           'name' => 'required',
+       ]);
+       $data = $request->except(['id', '_token']);
+
+       Designation::find($id)->update($data);
+
+       return redirect('/admin/designation');
+   }
+
 }
