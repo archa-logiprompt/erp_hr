@@ -12,7 +12,8 @@
             success: function(response) {
                 $.each(response, function(key, val) {
                     $('select[data-type="' + val.permission_type_id + '"][data-permission="' + val
-                        .permission_id + '"]').val(val.access_id);
+                        .permission_id + '"]').val(val.access_id).attr('data-id', val.id);
+
                 });
             },
 
@@ -52,7 +53,14 @@
                     );
 
                 },
-                success: function() {
+                success: function(response) {
+                    getAssignedData({{ $roleData['id'] }})
+
+                    // $('select[data-type="' + permission_type_id +
+                    //     '"][data-permission="' + permission_id + '"]').attr('data-id',
+                    //     response);
+
+
                     $(".loading-overlay").remove();
                 }
             });

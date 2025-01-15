@@ -74,12 +74,17 @@ class RoleController extends Controller
 
     public function assign(Request $request)
     {
-        $data = $request->except(['id', '_token']);
-        RolesAndPermission::create($data);
+        $data = $request->except(['_token']);
+        $insert_id = RolesAndPermission::updateOrCreate(
+            ['id' => $data['id']],
+            $data
+        );
+        echo json_encode($insert_id->id);
     }
 
-    public function AssignedDataByRole(Request $request) {
-        $data=RolesAndPermission::where('role_id',$request->role_id)->get();
+    public function AssignedDataByRole(Request $request)
+    {
+        $data = RolesAndPermission::where('role_id', $request->role_id)->get();
         echo json_encode($data);
     }
 }
