@@ -64,6 +64,7 @@ return array(
     'App\\Models\\PermissionGroup' => $baseDir . '/app/Models/PermissionGroup.php',
     'App\\Models\\Project' => $baseDir . '/app/Models/Project.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
+    'App\\Models\\RolesAndPermission' => $baseDir . '/app/Models/RolesAndPermission.php',
     'App\\Models\\Salutation' => $baseDir . '/app/Models/Salutation.php',
     'App\\Models\\Student' => $baseDir . '/app/Models/Student.php',
     'App\\Models\\StudentInstallment' => $baseDir . '/app/Models/StudentInstallment.php',

@@ -1,6 +1,8 @@
 @extends('layouts.dashboard.app')
 @section('content')
+    
     <div class="page-body">
+        <div class="loading"></div>
         <div class="container-fluid">
             <div class="page-title">
                 <div class="row">
@@ -34,11 +36,12 @@
                                 <table class="display" id="basic-1">
 
                                     {{-- <tbody> --}}
+
                                     @foreach ($permissionData as $heads)
                                         <thead>
                                             <tr>
                                                 <th colspan="5" class="text-center">
-                                                    {{ $heads->permission_group }}</th>
+                                                    {{ $heads['permission_group'] }}</th>
                                             </tr>
                                             <tr>
                                                 <th>Permissions</th>
@@ -49,34 +52,68 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($heads['permission'] as $permission)
+                                            @foreach ($heads['permission'] as $index => $permission)
+                                                {{-- @php
+                                                    $formatedArray = json_decode(
+                                                        json_encode($permission['assignedRoles']),
+                                                        true,
+                                                    );
+                                                    $addData=array();
+                                                    dd($add);
+                                                    $add = array_search(
+                                                        1,
+                                                        array_column($formatedArray, 'permission_type_id'),
+                                                    );
+                                                    if ($add >= 0) {
+                                                        $addData = $permission['assignedRoles'][$add];
+                                                    }
+                                                    // $view = array_search(
+                                                    //     2,
+                                                    //     array_column($formatedArray, 'permission_type_id'),
+                                                    // );
+                                                    // $update = array_search(
+                                                    //     3,
+                                                    //     array_column($formatedArray, 'permission_type_id'),
+                                                    // );
+                                                    // $delete = array_search(
+                                                    //     4,
+                                                    //     array_column($formatedArray, 'permission_type_id'),
+                                                    // );
+                                                @endphp --}}
+
                                                 <tr>
-                                                    <td>{{ $permission->permission }}</td>
+                                                    <td>{{ $permission['permission'] }}</td>
                                                     <td><select class="permissions" data-type="1"
-                                                            data-permission="{{ $permission->id }}" data-id="" data-role_id="{{$roleData->id}}">
+                                                            data-permission="{{ $permission['id'] }}" data-id=""
+                                                            data-role_id="{{ $roleData['id'] }}">
                                                             <option value="1">None</option>
                                                             <option value="2">All</option>
+                                                            <option value="3">Owned</option>
+
                                                         </select>
                                                     </td>
                                                     <td><select class="permissions" data-type="2"
-                                                            data-permission="{{ $permission->id }}" data-id="" data-role_id="{{$roleData->id}}">
+                                                            data-permission="{{ $permission['id'] }}" data-id=""
+                                                            data-role_id="{{ $roleData['id'] }}">
                                                             <option value="1">None</option>
                                                             <option value="2">All</option>
-                                                            <option value="2">Owned</option>
+                                                            <option value="3">Owned</option>
                                                         </select>
                                                     </td>
                                                     <td><select class="permissions" data-type="3"
-                                                            data-permission="{{ $permission->id }}" data-id="" data-role_id="{{$roleData->id}}">
+                                                            data-permission="{{ $permission['id'] }}" data-id=""
+                                                            data-role_id="{{ $roleData['id'] }}">
                                                             <option value="1">None</option>
                                                             <option value="2">All</option>
-                                                            <option value="2">Owned</option>
+                                                            <option value="3">Owned</option>
                                                         </select>
                                                     </td>
                                                     <td><select class="permissions" data-type="4"
-                                                            data-permission="{{ $permission->id }}" data-id="" data-role_id="{{$roleData->id}}">
+                                                            data-permission="{{ $permission['id'] }}" data-id=""
+                                                            data-role_id="{{ $roleData['id'] }}">
                                                             <option value="1">None</option>
                                                             <option value="2">All</option>
-                                                            <option value="2">Owned</option>
+                                                            <option value="3">Owned</option>
                                                         </select>
                                                     </td>
                                                 </tr>
@@ -84,7 +121,7 @@
                                         </tbody>
                                     @endforeach
 
-                                    
+
 
 
                                 </table>
