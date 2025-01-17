@@ -257,6 +257,11 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     //employee
     Route::get('/admin/employee', [EmployeeController::class, 'index'])->name('role.employee.index');
     Route::get('/admin/employee/create', [EmployeeController::class, 'create'])->name('admin.employee.create');
+    Route::post('/admin/employee/store', [EmployeeController::class, 'store'])->name('admin.employee.store');
+    Route::get('/admin/employee/destroy/{id}', [EmployeeController::class, 'destroy'])->name('admin.employee.destroy');
+    Route::get('/admin/employee/edit/{id}', [EmployeeController::class, 'edit'])->name('admin.employee.edit');
+    Route::post('/admin/employee/update/{id}', [EmployeeController::class, 'update'])->name('admin.employee.update');
+
 
     
     //Role

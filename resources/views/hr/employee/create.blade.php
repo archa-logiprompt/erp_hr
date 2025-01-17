@@ -4,31 +4,27 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Client Account Details</h4>
+                    <h4>Add Employee Details</h4>
                 </div>
                 <div class="card-body">
-                    <form id="clientForm" method="POST" action="{{ route('admin.client.store') }}" novalidate=""
+                    <form id="clientForm" method="POST" action="{{ route('admin.employee.store') }}" novalidate=""
                         enctype="multipart/form-data">
 
                         @csrf
                         <div class="row g-4">
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="salutation">Salutation</label>
-                                <select class="form-select" name="salute">
-                                    <option selected disabled value="">...</option>
-                                    @foreach (config('global.Salutations') as $salutation)
-                                        <option value="{{ $salutation }}">{{ $salutation }}</option>
-                                    @endforeach
-                                </select>
-                                @if ($errors->has('salutation'))
+                                <label class="form-label" for="empid">Employee Id<span style="color: red;">*</span></label>
+                                <input class="form-control" name="empid" type="text" placeholder="e.g. LPT001"
+                                    value="{{ old('empid') }}">
+                                @if ($errors->has('empid'))
                                     <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('salutation') }}
+                                        {{ $errors->first('empid') }}
                                     </div>
                                 @endif
                             </div>
 
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="clientName">Client Name <span style="color: red;">*</span></label>
+                                <label class="form-label" for="clientName">Employee Name <span style="color: red;">*</span></label>
                                 <input class="form-control" name="name" type="text" placeholder="e.g. John"
                                     value="{{ old('name') }}">
                                 @if ($errors->has('name'))
@@ -48,25 +44,17 @@
                                     </div>
                                 @endif
                             </div>
-
-                            <!--<div class="col-md-4 position-relative">-->
-                            <!--    <label class="form-label" for="clientPassword">Password </label>-->
-                            <!--    <input class="form-control" name="password" type="password" value="{{ old('password') }}">-->
-                            <!--    @if ($errors->has('password'))-->
-                            <!--        <div class="alert alert-danger mt-2">-->
-                            <!--            {{ $errors->first('password') }}-->
-                            <!--        </div>-->
-                            <!--    @endif-->
-                            <!--</div>-->
-
-                            {{-- Country, Mobile, and Gender --}}
-                            {{-- <div class="col-md-3 position-relative">
-                            <label class="form-label" for="clientCountry">Country</label>
-                            <select class="form-select" id="clientCountry" >
-                                <option selected disabled value="">...</option>
-                                <option value="India">India</option>
-                            </select>
-                        </div> --}}
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="clientEmail">Password </label>
+                                <input class="form-control" name="password" type="password" placeholder="john@123"
+                                    value="{{ old('password') }}">
+                                @if ($errors->has('password'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('password') }}
+                                    </div>
+                                @endif
+                            </div>
+                           
                             <div class="col-md-4 position-relative">
                                 <label for="country" class="form-label">Select Country:</label>
                                 <select class="form-select" name="country" id="country" onchange="updateDialCode()">
@@ -112,7 +100,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-6 position-relative">
+                            <div class="col-md-4 position-relative">
                                 <label class="form-label" for="profilePic">Image</label>
                                 <input class="form-control" name="ProfilePicture" type="file" accept="image/*">
                                 @if ($errors->has('ProfilePicture'))
@@ -120,6 +108,99 @@
                                         {{ $errors->first('ProfilePicture') }}
                                     </div>
                                 @endif
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="clientMobile">Joining Date<span style="color: red;">*</span></label>
+                                <div class="input-group has-validation">
+                                    <input class="form-control" name="joining_date" type="date" placeholder="e.g. 04/12/2024"
+                                        {{-- oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" --}} />
+
+                                </div>
+
+                                <!-- <input type="hidden" name="dialCode" id="dialCode" value="93"> -->
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="clientMobile"> Date of Birth<span style="color: red;">*</span></label>
+                                <div class="input-group has-validation">
+                                    <input class="form-control" name="dob" type="date" placeholder="e.g. 04/12/2024"
+                                        {{-- oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" --}} />
+
+                                </div>
+
+                                <!-- <input type="hidden" name="dialCode" id="dialCode" value="93"> -->
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="clientGender">Role</label>
+                                <!-- Use 'chosen-select' class to initialize Chosen -->
+                                <select class="form-select chosen-select" name="role[]" id="role" multiple>
+                                    @foreach ($role as $roles)
+                                        <option value="{{ $roles['id'] }}">
+                                            {{ $roles['role'] }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('role'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('role') }}
+                                    </div>
+                                @endif
+                            </div>
+
+
+
+                            <div class="col-md-4 position-relative">
+                                <label for="dep_name" class="form-label">Select Department:</label>
+                                <select class="form-select" name="dep_name" id="dep_name" >
+                                    @foreach ($department as $dep)
+                                        <option value="{{ $dep['id'] }}">
+                                           {{$dep['dep_name']}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('dep_name'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('dep_name') }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label for="name" class="form-label">Select Designation:</label>
+                                <select class="form-select" name="designation_id" id="designation_id" >
+                                    @foreach ($designation as $des)
+                                        <option value="{{ $des['id'] }}">
+                                           {{$des['name']}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('name'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="col-md-4 position-relative">
+                                <label for="name" class="form-label">Select Employee Type:</label>
+                                <select class="form-select" name="employee_type" id="employee_type" >
+                                    <option value="1">Regular</option>
+                                    <option value="2">Intern</option>
+                                    <option value="3">Temporary</option>
+                                </select>
+                                @if ($errors->has('name'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="clientMobile">Adhaar No<span style="color: red;">*</span></label>
+                                <div class="input-group has-validation">
+                                    <input class="form-control" name="adhaar" type="number" placeholder="e.g. 1234567890"
+                                        {{-- oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" --}} />
+
+                                </div>
+
+                                <input type="hidden" name="dialCode" id="dialCode" value="93">
                             </div>
 
                             {{-- File Upload --}}
@@ -141,142 +222,127 @@
                             </div>
                         </div> --}}
 
-
-                            <div class="card-header">
-                                <h4>Company Details</h4>
+                        <div class="card-header">
+                                <h4>Other Details</h4>
                             </div>
-
+                           
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="companyName">Company Name<span style="color: red;">*</span> </label>
-                                <input class="form-control" name="companyName" type="text" placeholder="e.g. ABC Corp">
-
-                            </div>
-
-                            <div class="col-md-4 position-relative">
-                                <label class="form-label" for="officialWebsite">Official Website </label>
-                                <input class="form-control" name="officialWebsite" type="url"
-                                    placeholder="e.g. www.abccorp.com">
-                                @if ($errors->has('officialWebsite'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('officialWebsite') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-4 position-relative">
-                                <label class="form-label" for="gstNumber">GST/VAT Number <span style="color: red;">*</span></label>
-                                <input class="form-control" name="gstNumber" type="text"
-                                    placeholder="e.g. 22AAAAA0000A1Z5">
-                                @if ($errors->has('gstNumber'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('gstNumber') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-3 position-relative">
-                                <label class="form-label" for="officePhone">Office Number <span style="color: red;">*</span></label>
-                                <input class="form-control" name="officePhone" type="text"
-                                    placeholder="e.g. 080-12345678">
-                                @if ($errors->has('officePhone'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('officePhone') }}
-                                    </div>
-                                @endif
-                            </div>
-
-
-                            <div class="col-md-3 position-relative">
-                                <label class="form-label" for="city">City</label>
-                                <input class="form-control" name="city" type="text">
-                                @if ($errors->has('city'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('city') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-3 position-relative">
-                                <label class="form-label" for="state">State</label>
-                                <input class="form-control" name="state" type="text">
-                                @if ($errors->has('state'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('state') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-3 position-relative">
-                                <label class="form-label" for="postalCode">Postal Code</label>
-                                <input class="form-control" name="postalCode" type="number">
-                                @if ($errors->has('postalCode'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('postalCode') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6 position-relative">
-                                <label class="form-label" for="companyAddress">Company Address <span style="color: red;">*</span></label>
-                                <textarea class="form-control" name="companyAddress" rows="3"></textarea>
-                                @if ($errors->has('companyAddress'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('companyAddress') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6 position-relative">
-                                <label class="form-label" for="shippingAddress">Shipping Address</label>
-                                <textarea class="form-control" name="shippingAdd" rows="3"></textarea>
-                                @if ($errors->has('shippingAddress'))
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('shippingAddress') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-12">
-                                <label for="editor">Additional Notes</label>
-                                <div class="toolbar-box">
-                                    {{-- 
-                                    <div id="toolbar2"><span class="ql-formats">
-                                            <select class="ql-size"></select></span><span class="ql-formats">
-                                            <button class="ql-bold">Bold </button>
-                                            <button class="ql-italic">Italic </button>
-                                            <button class="ql-underline">underline</button>
-                                            <button class="ql-strike">Strike </button></span><span class="ql-formats">
-                                            <button class="ql-list" value="ordered">List </button>
-                                            <button class="ql-list" value="bullet"> </button>
-                                            <button class="ql-indent" value="-1"> </button>
-                                            <button class="ql-indent" value="+1"></button></span><span
-                                            class="ql-formats">
-                                            <button class="ql-link"></button>
-                                            <button class="ql-image"></button>
-                                            <button class="ql-video"></button></span>
-                                    </div> --}}
-                                    <div class="col-md-12 position-relative editor-container">
-
-                                        <textarea id="editor" name="note" class="form-control" rows="10"></textarea>
-                                        @if ($errors->has('note'))
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $errors->first('note') }}
-                                            </div>
-                                        @endif
-                                    </div>
+                                <label class="form-label">Login Allowed<span style="color: red;">*</span></label>
+                                <div>
+                                    <input type="radio" id="loginYes" name="loginYes" value="0" required>
+                                    <label for="loginYes">Yes</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="loginNo" name="loginYes" value="1" checked="checked">
+                                    <label for="loginNo">No</label>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 position-relative">
-                                <label class="form-label" for="logo">Company Logo</label>
-                                <input class="form-control" name="logo" type="file" accept="image/*">
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label">Recieve Mail<span style="color: red;">*</span></label>
+                                <div>
+                                    <input type="radio" id="recievemailyes" name="recievemailyes" value="0" required>
+                                    <label for="loginYes">Yes</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="recievemailno" name="recievemailyes" value="1" checked="checked">
+                                    <label for="loginNo">No</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label">Hourly Rate<span style="color: red;">*</span></label>
+                                <div>
+                                    <input type="radio" id="hourlyrateyes" name="hourlyrateyes" value="0" required>
+                                    <label for="hourlyrateyes">Yes</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="hourlyrateno" name="hourlyrateyes" value="1" checked="checked">
+                                    <label for="hourlyrateno">No</label>
+                                </div>
+                            </div>
 
-                                @if ($errors->has('logo'))
+                       
+
+                            <div class="card-header">
+                                <h4>Bank Details</h4>
+                            </div>
+
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="accountname">Account Holder Name<span style="color: red;">*</span> </label>
+                                <input class="form-control" name="acc_name" type="text" placeholder="e.g. Rohit">
+
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="account_no">Account Number<span style="color: red;">*</span> </label>
+                                <input class="form-control" name="account_no" type="text" placeholder="e.g. 789657123558">
+
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="bank_name">Bank Name<span style="color: red;">*</span> </label>
+                                <input class="form-control" name="bank_name" type="text" placeholder="e.g. HDFC">
+
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="ifsc"> IFSC Code<span style="color: red;">*</span> </label>
+                                <input class="form-control" name="ifsc" type="text" placeholder="e.g. HDFC7415">
+
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="branch_name"> Branch Name<span style="color: red;">*</span> </label>
+                                <input class="form-control" name="branch_name" type="text" placeholder="e.g. Kazhakootam">
+
+                            </div>
+
+
+                            <div class="card-header">
+                                <h4>Documents Upload</h4>
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="profilePic">PG Certificate</label>
+                                <input class="form-control" name="pg" type="file" accept="image/*">
+                                @if ($errors->has('pg'))
                                     <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('logo') }}
+                                        {{ $errors->first('pg') }}
                                     </div>
                                 @endif
                             </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="profilePic">UG Certificate</label>
+                                <input class="form-control" name="ug" type="file" accept="image/*">
+                                @if ($errors->has('ug'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('ug') }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="profilePic">12th Certificate</label>
+                                <input class="form-control" name="twelth" type="file" accept="image/*">
+                                @if ($errors->has('twelth'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('twelth') }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="profilePic">10th Certificate</label>
+                                <input class="form-control" name="tenth" type="file" accept="image/*">
+                                @if ($errors->has('tenth'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('tenth') }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <label class="form-label" for="profilePic">Copy of Adhaar</label>
+                                <input class="form-control" name="copy_adhaar" type="file" accept="image/*">
+                                @if ($errors->has('copy_adhaar'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('copy_adhaar') }}
+                                    </div>
+                                @endif
+                            </div>
+                       
 
                             <div class="col-12">
                                 <button class="btn btn-primary" id="form-submit-btn" type="submit">Submit Form</button>
@@ -287,6 +353,23 @@
             </div>
         </div>
     </div>
+   
+
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet" />
+<script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize Chosen for the multi-select
+        $('.chosen-select').chosen({
+            placeholder_text_multiple: "Select roles", 
+            no_results_text: "No roles found",      
+            width: "100%"                           
+        });
+    });
+</script>
+
 
   <script>
         document.addEventListener('DOMContentLoaded', function() {

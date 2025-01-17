@@ -39,10 +39,44 @@
                                     <thead>
                                         <tr>
                                             <th>Name</th>
+                                            <th>Emp Id</th>
+                                            <th>Phone No</th>
+
+                                            <th>Email</th>
+                                            <th>Department</th>
+                                            <th>Designation</th>
+
+
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                    
+                                    <tbody>
+                                        @foreach ($employees as $emp)
+                                        @if ($emp['status'] == 1)
+                                        <tr>
+                                            <td>{{$emp['user']['name']}}</td>
+                                            <td>{{$emp['empid']}}</td>
+                                            <td>{{$emp['mobile']}}</td>
+                                            <td>{{$emp['user']['email']}}</td>
+                                            <td>{{$emp['department']['dep_name']}}</td>
+                                            <td>{{$emp['designation']['name']}}</td>
+
+
+                                            <td>
+                                                <ul class="action">
+                                                    <li class="edit"> <a href="{{url('/admin/employee/edit',$emp->id)}}"><i
+                                                                class="icon-pencil-alt"></i></a></li>
+                                                    <li class="delete"><a href="{{url('/admin/employee/destroy',$emp->id)}}"  onClick="return confirm('Are you sure?');"><i class="icon-trash"></i></a>
+                                                    </li>
+
+                                                </ul>
+                                            </td>
+                                            
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

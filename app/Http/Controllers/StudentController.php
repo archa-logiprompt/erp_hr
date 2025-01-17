@@ -236,12 +236,12 @@ class StudentController extends Controller
     'file.mimes' => 'Only PDF, DOC, DOCX, JPG, and PNG files are allowed.',
     'image.mimes' => 'Only JPG, PNG, JPEG, and GIF images are allowed.',
     'image.max' => 'Image size must not exceed 2MB.',
-]);
+]
+);
 
         // Initialize data to update
         $data = $request->except(['_token']);
 
-        // Handle the image upload if a new image is uploaded
         if ($request->hasFile('image')) {
             // Delete the old image if it exists
             if (!empty($student->image) && file_exists(public_path($student->image))) {
