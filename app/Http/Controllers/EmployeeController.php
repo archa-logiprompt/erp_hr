@@ -35,31 +35,43 @@ class EmployeeController extends Controller
      
     $request->validate([
         'empid' => 'required|unique:employees,empid',
-        // 'gender' => 'required|in:male,female,other',
-        // 'name' => 'required|string|max:255',
-        // 'email' => 'required|email|unique:users,email',
-        // 'mobile' => 'required|digits:10|unique:employees,mobile',
-        // 'password' => 'required|min:8',
-        // 'adhaar' => 'required|digits:12|unique:employees,adhaar',
+        'gender' => 'required|in:male,female,other',
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'mobile' => 'required|min:10',
+        'password' => 'required|min:8',
+        'joining_date' => 'required',
+        'dep_name' => 'required',
+        'designation_id' => 'required',
+
+
+        'dob' => 'required',
+        'adhaar' => 'required|digits:12|unique:employees,adhaar',
     ], [
         // Custom error messages
-        // 'empid.required' => 'Employee ID is required.',
-        // 'empid.unique' => 'This Employee ID is already taken.',
-        // 'gender.required' => 'Gender is required.',
-        // 'gender.in' => 'Gender must be Male, Female, or Other.',
-        // 'name.required' => 'Name is required.',
-        // 'name.max' => 'Name cannot exceed 255 characters.',
-        // 'email.required' => 'Email address is required.',
-        // 'email.email' => 'The email address must be a valid format.',
-        // 'email.unique' => 'This email address is already in use.',
-        // 'mobile.required' => 'Mobile number is required.',
-        // 'mobile.digits' => 'Mobile number must be exactly 10 digits.',
-        // 'mobile.unique' => 'This mobile number is already taken.',
-        // 'password.required' => 'Password is required.',
-        // 'password.min' => 'Password must be at least 8 characters long.',
-        // 'adhaar.required' => 'Aadhaar number is required.',
-        // 'adhaar.digits' => 'Aadhaar number must be exactly 12 digits.',
-        // 'adhaar.unique' => 'This Aadhaar number is already in use.',
+        'empid.required' => 'Employee ID is required.',
+        'joining_date.required'=> 'Joining date is required.',
+        'dob.required'=>'Date Of birth is required',
+        'dep_name.required'=>'Department is required',
+
+        'designation_id.required'=>'Designation is required',
+
+        'empid.unique' => 'This Employee ID is already taken.',
+        'gender.required' => 'Gender is required.',
+        'gender.in' => 'Gender must be Male, Female, or Other.',
+        'name.required' => 'Name is required.',
+        'name.max' => 'Name cannot exceed 255 characters.',
+        'email.required' => 'Email address is required.',
+        'email.email' => 'The email address must be a valid format.',
+        'email.unique' => 'This email address is already in use.',
+        'mobile.required' => 'Mobile number is required.',
+        'mobile.digits' => 'Mobile number must be exactly 10 digits.',
+        'mobile.unique' => 'This mobile number is already taken.',
+        'password.required' => 'Password is required.',
+        'password.min' => 'Password must be at least 8 characters long.',
+        'adhaar.required' => 'Aadhaar number is required.',
+        'adhaar.digits' => 'Aadhaar number must be exactly 12 digits.',
+        'adhaar.unique' => 'This Aadhaar number is already in use.',
     ]);
 
     
@@ -202,8 +214,8 @@ class EmployeeController extends Controller
             'gender'=>'required',
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,    
-            'mobile' => 'required|string|max:15',
-            'password' => 'required|nullable|min:8', 
+            'mobile' => 'required|string|min:15',
+            // 'password' => 'required|nullable|min:8', 
             'adhaar' => 'required|nullable|max:12', 
 
             
