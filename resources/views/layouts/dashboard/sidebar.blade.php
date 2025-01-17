@@ -1,3 +1,6 @@
+@php
+    $permissions = Session::get('permissions');
+@endphp
 <div class="sidebar-wrapper" data-layout="stroke-svg">
     <div class="logo-wrapper d-flex align-items-center justify-content-between">
         <a href="{{ route('admin.dashboard') }}">
@@ -235,7 +238,7 @@
                         <li><a href="{{ route('role.employee.index') }}">Add Employee</a></li>
                         </ul>
                 </li>
-                
+
                 <li class="sidebar-main-title">
                     <div>
                         <h6>Reports</h6>
@@ -250,7 +253,9 @@
                             <use href="../assets/svg/icon-sprite.svg#fill-form"></use>
                         </svg><span>All reports</span></a>
                     <ul class="sidebar-submenu">
-                        <li><a href="{{ route('admin.gstreport.create') }}">Gst Report</a></li>
+                        @if (in_array('gst_report-can_view', $permissions))
+                            <li><a href="{{ route('admin.gstreport.create') }}">Gst Report</a></li>
+                        @endif
                         <li><a href="{{ route('admin.incomeReport.index') }}">Income Report</a></li>
                         <!--<li><a href="{{ route('admin.expenseReport.index') }}">Expense Report</a></li>-->
                         <li><a href="{{ route('admin.expReport.index') }}">Expense Report</a></li>

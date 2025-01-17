@@ -10,8 +10,8 @@ class RolesAndPermission extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    // public function permissionAssigned()
-    // {
-    //     return $this->belongsTo(Permission::class, 'permission_id');
-    // }
+    public function permissionAssigned()
+    {
+        return $this->belongsTo(Permission::class, 'permission_id');
+    }
 }
