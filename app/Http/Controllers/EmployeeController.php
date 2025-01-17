@@ -38,12 +38,24 @@ class EmployeeController extends Controller
         'gender' => 'required|in:male,female,other',
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email',
-        'mobile' => 'required|digits:10|unique:employees,mobile',
+        'mobile' => 'required|min:10',
         'password' => 'required|min:8',
+        'joining_date' => 'required',
+        'dep_name' => 'required',
+        'designation_id' => 'required',
+
+
+        'dob' => 'required',
         'adhaar' => 'required|digits:12|unique:employees,adhaar',
     ], [
         // Custom error messages
         'empid.required' => 'Employee ID is required.',
+        'joining_date.required'=> 'Joining date is required.',
+        'dob.required'=>'Date Of birth is required',
+        'dep_name.required'=>'Department is required',
+
+        'designation_id.required'=>'Designation is required',
+
         'empid.unique' => 'This Employee ID is already taken.',
         'gender.required' => 'Gender is required.',
         'gender.in' => 'Gender must be Male, Female, or Other.',
@@ -202,8 +214,8 @@ class EmployeeController extends Controller
             'gender'=>'required',
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,    
-            'mobile' => 'required|string|max:15',
-            'password' => 'required|nullable|min:8', 
+            'mobile' => 'required|string|min:15',
+            // 'password' => 'required|nullable|min:8', 
             'adhaar' => 'required|nullable|max:12', 
 
             

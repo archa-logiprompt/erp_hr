@@ -4,7 +4,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Add Employee Details</h4>
+                    <h4>Edit Employee Details</h4>
                 </div>
                 <div class="card-body">
                     <form id="clientForm" method="POST" action="{{ url('admin/employee/update', $employees->id) }}" novalidate=""
@@ -100,6 +100,11 @@
                                         {{-- oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" --}} />
 
                                 </div>
+                                @if ($errors->has('mobile'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('mobile') }}
+                                    </div>
+                                @endif
 
                                 <input type="hidden" name="dialCode" id="dialCode" value="93">
                             </div>
@@ -154,7 +159,11 @@
                                         {{-- oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" --}} />
 
                                 </div>
-
+                                @if ($errors->has('joining_date'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('joining_date') }}
+                                    </div>
+                                @endif
                                 <!-- <input type="hidden" name="dialCode" id="dialCode" value="93"> -->
                             </div>
                             <div class="col-md-4 position-relative">
@@ -162,7 +171,11 @@
                                 <div class="input-group has-validation">
                                     <input class="form-control" name="dob" type="date" placeholder="e.g. 04/12/2024" value="{{$employees->dob}}"
                                         {{-- oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" --}} />
-
+                                        @if ($errors->has('dob'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('dob') }}
+                                    </div>
+                                @endif
                                 </div>
 
                             </div>
@@ -216,15 +229,15 @@
                                     </option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('name'))
+                                @if ($errors->has('designation_id'))
                                     <div class="alert alert-danger mt-2">
-                                        {{ $errors->first('name') }}
+                                        {{ $errors->first('designation_id') }}
                                     </div>
                                 @endif
                             </div>
 
                             <div class="col-md-4 position-relative">
-                                <label for="employee_type" class="form-label">Select Employee Type:</label>
+                                <label for="employee_type" class="form-label">Select Employee Type:<span style="color: red;">*</span></label>
                                 <select class="form-select" name="employee_type" id="employee_type">
                                     <option value="1" @if ($employees->employee_type == 1) selected @endif>Regular</option>
                                     <option value="2" @if ($employees->employee_type == 2) selected @endif>Intern</option>
@@ -244,7 +257,11 @@
                                         {{-- oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" --}} />
 
                                 </div>
-
+                                @if ($errors->has('adhaar'))
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $errors->first('adhaar') }}
+                                    </div>
+                                @endif
                                 <input type="hidden" name="dialCode" id="dialCode" value="93">
                             </div>
 
@@ -320,27 +337,27 @@
                             </div>
 
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="accountname">Account Holder Name<span style="color: red;">*</span> </label>
+                                <label class="form-label" for="accountname">Account Holder Name </label>
                                 <input class="form-control" name="acc_name" type="text" placeholder="e.g. Rohit" value="{{$employees->acc_name}}">
 
                             </div>
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="account_no">Account Number<span style="color: red;">*</span> </label>
+                                <label class="form-label" for="account_no">Account Number </label>
                                 <input class="form-control" name="account_no" type="text" placeholder="e.g. 789657123558" value="{{$employees->account_no}}">
 
                             </div>
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="bank_name">Bank Name<span style="color: red;">*</span> </label>
+                                <label class="form-label" for="bank_name">Bank Name </label>
                                 <input class="form-control" name="bank_name" type="text" placeholder="e.g. HDFC" value="{{$employees->bank_name}}">
 
                             </div>
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="ifsc"> IFSC Code<span style="color: red;">*</span> </label>
+                                <label class="form-label" for="ifsc"> IFSC Code </label>
                                 <input class="form-control" name="ifsc" type="text" placeholder="e.g. HDFC7415" value="{{$employees->ifsc}}">
 
                             </div>
                             <div class="col-md-4 position-relative">
-                                <label class="form-label" for="branch_name"> Branch Name<span style="color: red;">*</span> </label>
+                                <label class="form-label" for="branch_name"> Branch Name </label>
                                 <input class="form-control" name="branch_name" type="text" placeholder="e.g. Kazhakootam" value="{{$employees->branch_name}}">
 
                             </div>
