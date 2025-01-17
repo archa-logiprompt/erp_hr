@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RolesAndPermission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,7 @@ class AdminController extends Controller
 
     public function authenticate(Request $request)
     {
-      
+        
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
@@ -29,6 +30,9 @@ class AdminController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            dd(Auth::user());
+            // $permission=RolesAndPermission::where()
+
             return view('dashboard');
         }
         return back();
